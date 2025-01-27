@@ -15,7 +15,6 @@ model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
-delimiter: [","]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
@@ -23,6 +22,10 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+seeds:
+  scd2:  # Nome do projeto
+    +delimiter: ";"  # Define o delimitador do CSV (alterar para ";" se necessário)
+    +quote_columns: false  # Configuração opcional para desativar aspas em volta de valores
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
