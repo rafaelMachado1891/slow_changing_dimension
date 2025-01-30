@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: postgres
+    database: postgres
+    schema: public
+    tables:
+      - name: CADASTRO_PRODUTOS
+        columns:
+          - name: Codigo
+          - name: Descricao
+          - name: Referencia
+          - name: Complemento
+          - name: Volume
+          - name: Celula
+          - name: Linha
+          - name: Custo
