@@ -8,3 +8,12 @@
             check_cols=['CADASTRO_PRODUTOS', 'CUSTO']
         )
     }}
+
+    SELECT 
+     codigo,
+     descricao,
+     CUSTO
+    
+    FROM {{ ref('stg_cadastro_produtos')}}
+
+    {% endsnapshot %}
