@@ -13,4 +13,4 @@ RUN python -m venv .venv
 RUN .venv/bin/pip install -r requirements.txt
 
 # Definir o comando de entrada garantindo que o ambiente virtual está ativado
-ENTRYPOINT ["/bin/sh", "-c", ". .venv/bin/activate && dbt run"]
+ENTRYPOINT ["/bin/sh", "-c", ". .venv/bin/activate, dbt seeds, dbt run"]

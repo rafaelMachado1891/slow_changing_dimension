@@ -1,13 +1,12 @@
 version: '3'
-
 services:
   data_base:
     container_name: data_base
-    image: postegres: latest
-    enviroment:
-      postgres_db: db
-      postegres_user: postgres
-      postegres_pass: admin
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
     volumes:
       - ./CADASTRO_PRODUTOS.csv:/docker-entrypoint-initdb.d/CADASTRO_PRODUTOS.csv
     ports:
@@ -15,7 +14,7 @@ services:
     networks:
       - data_base
 
-pgadmin:
+  pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
     environment:
@@ -32,3 +31,23 @@ pgadmin:
       - 5050:5050
     networks:
       - data_base    
+  app:
+    container_name: app
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - data_base  # Garante que o banco de dados esteja pronto antes do app
+    networks:
+      - data_base
+    ports:
+      - 8000:8000  # Exemplo de porta para expor seu app (ajuste conforme necessário)
+      
+networks:
+  data_base:
+    driver: bridge
+
+volumes:
+  postgresql_bin:
+  pgadmin_root_prefs:
+  pgadmin_working_dir:
